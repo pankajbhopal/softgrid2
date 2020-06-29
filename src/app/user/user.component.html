@@ -1,0 +1,59 @@
+<div style="margin: 70px;"> 
+    <h2> All Users -</h2>
+    
+	<div class="row">
+        <div class="col-md-3">  
+            <div style="border: 1px solid gray;padding: 15px;">
+
+          <h3> Create User :  </h3>
+            <div class="example-container" >
+                  <mat-form-field  class="example-full-width">
+                      <mat-label>User Name</mat-label>
+                      <input matInput type="text" [(ngModel)]="name" required>
+                  </mat-form-field>
+                 
+                <br> <br>
+                <button mat-stroked-button type="reset" style="margin-right: 15px;"> Reset </button>
+                <button mat-raised-button color="primary" type="submit" (click)="onSave()"> Save </button>
+            </div>
+        </div>
+
+        </div>
+        <div class="col-md-1"> </div> 
+        <div class="col-md-8"> 
+          
+          <mat-form-field>
+            <mat-label>Filter by Time from : </mat-label>
+            <!-- <input matInput (keyup)="search($event)" [(ngModel)]="searchText" placeholder="Search"> -->
+            <input matInput type="time" [(ngModel)]="searchFrom" placeholder="Search" >  
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>to : </mat-label>
+            <input matInput type="time" [(ngModel)]="searchTo" >  
+          </mat-form-field>
+            <b class="spacer"> Total number of requests served: {{total_requests}} </b>
+
+          <table class="table"> 
+            <tr>
+              <th> Sr. </th>
+              <th> Name </th>
+              <th> No. of Requests </th>
+              <th> Time </th>
+              <th> Action </th>
+            </tr>
+            <tr *ngFor="let user of users | filter: searchFrom: searchTo; let i = index">
+              <td> {{i+1}} </td>
+              <td> {{user.name}} </td>
+              <td> {{user.counter}} </td>
+              <td> {{user.time}} </td>
+              <td> <button mat-stroked-button color="primary" style="margin-right: 15px;" (click)="onRequest(user.id)" > Click for Count Request </button> 
+                   <button mat-stroked-button color="warn" (click)="onDelete(user.id)" > Delete </button>
+              </td>
+            </tr>
+          </table>
+<br>
+
+        </div>
+      </div>
+</div>

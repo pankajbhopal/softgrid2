@@ -1,0 +1,61 @@
+<div style="margin: 70px;"> 
+    <h2> Partners -</h2>
+    
+	<div class="row">
+        <div class="col-md-3">  
+            <div style="border: 1px solid gray;padding: 15px;">
+
+          <h3> Create User :  </h3>
+            <div class="example-container" >
+                  <mat-form-field  class="example-full-width">
+                      <mat-label>Group Name</mat-label>
+                      <input matInput type="text" [(ngModel)]="group_name" required>
+                  </mat-form-field>
+
+                  <br> 
+                  <mat-form-field  class="example-full-width">
+                    <mat-label> Select Partners </mat-label>
+                      <mat-select [(ngModel)]="users" multiple>
+                        <mat-option *ngFor="let user of userslist" [value]="user.name">
+                          {{user.name}}
+                        </mat-option>
+                      </mat-select>
+                  </mat-form-field>
+                 
+                <br> <br>
+                <button mat-stroked-button type="reset" style="margin-right: 15px;"> Reset </button>
+                <button mat-raised-button color="primary" type="submit" (click)="onSave()"> Save </button>
+            </div>
+        </div>
+
+        </div>
+        <div class="col-md-1"> </div> 
+        <div class="col-md-8"> 
+          <!-- <mat-form-field>
+            <mat-label>Filter</mat-label>
+            <input matInput [(ngModel)]="searchText" placeholder="Search">
+          </mat-form-field> -->
+
+          <table class="table"> 
+            <tr>
+              <th> Sr. </th>
+              <th> Name </th>
+              <th> Partners </th>
+              <th> Requests served based on Partners </th>
+              <th> Action </th>
+            </tr>
+            <tr *ngFor="let partner of partners; let i = index">
+              <td> {{i+1}} </td>
+              <td> {{partner.group_name}} </td> 
+              <td> {{partner.users}} </td>
+              <td> {{partner.partners_counter}} </td>
+              <td> 
+                   <button mat-stroked-button color="warn" (click)="onDelete(partner.id)" > Delete </button>
+              </td>
+            </tr>
+          </table>
+<br>
+
+        </div>
+      </div>
+</div>
